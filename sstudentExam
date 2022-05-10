@@ -1,0 +1,156 @@
+import java.util.Scanner;
+public class studentExam 
+{
+private int quiz1,quiz2,quiz3;
+private int midterm;
+private int examFinal;
+private double totalNote;
+private char grade;
+Scanner note=new Scanner(System.in);
+///**** Allow to input students exam notes ***/////////
+public void inputData() 
+{
+	int fquiz1,fquiz2,fquiz3,fmidterm,fexamFinal;
+	System.out.println("Please input Student's first quiz note");
+	fquiz1=note.nextInt();
+	if (quizOk(fquiz1)) setQuiz1(fquiz1);
+	while (!quizOk(fquiz1))
+	{
+		System.out.println("Invalid quiz note entered, please enter first quiz note between 0-10");
+		fquiz1=note.nextInt();
+		if (quizOk(fquiz1)) setQuiz1(fquiz1);
+	}
+	System.out.println("Please input Student's second quiz note");
+	fquiz2=note.nextInt();
+	if (quizOk(fquiz2)) setQuiz2(fquiz2);
+	while (!quizOk(fquiz2))
+	{
+		System.out.println("Invalid quiz note entered, please enter second quiz note between 0-10");
+		fquiz2=note.nextInt();
+		if (quizOk(fquiz2)) setQuiz2(fquiz2);
+	}
+	System.out.println("Please input Student's third quiz note");
+	fquiz3=note.nextInt();
+	if (quizOk(fquiz3)) setQuiz3(fquiz3);
+	while (!quizOk(fquiz3))
+	{
+		System.out.println("Invalid quiz note entered, please enter second quiz note between 0-10");
+		fquiz3=note.nextInt();
+		if (quizOk(fquiz3)) setQuiz3(fquiz3);
+	}
+	System.out.println("Please input Student's midterm note");
+	fmidterm=note.nextInt();
+	if (noteOk(fmidterm)) setmidterm(fmidterm);
+	while (!noteOk(fmidterm))
+	{
+		System.out.println("Invalid quiz note entered, please enter midterm note between 0-100");
+		fmidterm=note.nextInt();
+		if (noteOk(fmidterm)) setmidterm(fmidterm);
+	} 
+	System.out.println("Please input Student's final note");
+	fexamFinal=note.nextInt();
+	if (noteOk(fexamFinal)) setexamFinal(fexamFinal);
+	while (!noteOk(fexamFinal))
+	{
+		System.out.println("Invalid quiz note entered, please enter final note between 0-100");
+		fexamFinal=note.nextInt();
+		if (noteOk(fexamFinal)) setexamFinal(fexamFinal);
+	} 
+}
+///*** check the quiz note between 1-10***////
+public boolean quizOk(int sNote)
+{
+	if ((sNote<=10)&&(sNote>=0)) 
+		{
+			return true;
+		} else return false;
+}
+///*** check the midterm and  final note between 1-100***////
+public boolean noteOk(int sNote)
+{
+	if ((sNote<=100)&&(sNote>=0)) 
+		{
+			return true;
+		} else return false;
+}
+
+public int getQuiz1()
+{
+	return quiz1;
+}
+public int getQuiz2()
+{
+	return quiz2;
+}
+public int getQuiz3()
+{
+	return quiz3;
+}
+public int getmidterm()
+{
+	return midterm;
+}
+public double getexamFinal()
+{
+	return examFinal;
+}
+public double gettotalnote()
+{
+	return totalNote;
+}
+public int getgrade()
+{
+	return grade;
+}
+			public void setQuiz1(int sQuiz1)
+			{
+				quiz1=sQuiz1;
+			}
+			public void setQuiz2(int sQuiz2)
+			{
+				quiz2=sQuiz2;
+			}
+			public void setQuiz3(int sQuiz3)
+			{
+				quiz3=sQuiz3;
+			}
+			public void setmidterm(int smidterm)
+			{
+				midterm=smidterm;
+			}
+			public void setexamFinal(int sxamFinal)
+			{
+				examFinal=sxamFinal;
+			}
+			public double settotalnote()
+			{
+				double calcNote;
+				int sumQuiz;
+				sumQuiz=(getQuiz1()+getQuiz2()+getQuiz3())*100/30;
+				calcNote=(sumQuiz*25/100)+(getmidterm()*35/100)+(getexamFinal()*40/100);
+				return calcNote;
+			}
+public char calcGrade()
+{
+if ((settotalnote()<=100)&&(settotalnote()>=90)) 
+		{
+			grade='A';
+		} else if ((settotalnote()<=89)&&(settotalnote()>70))
+				{
+				grade='B';
+				} else if ((settotalnote()<=79)&&(settotalnote()>=70))
+					{
+					grade='C';
+					} else if ((settotalnote()<=69)&&(settotalnote()>=60))
+						{
+						grade='D';
+						} else if (settotalnote()<60) grade='F';
+	
+return grade;
+}
+public void writeOut()
+{
+	System.out.println("Youre Exam note is "+settotalnote());
+	System.out.println("Your grade is      "+calcGrade());
+}
+}
